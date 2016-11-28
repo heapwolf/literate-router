@@ -1,0 +1,20 @@
+{
+  "name": "literate-router",
+  "version": "1.0.0",
+  "description": "Markdown powered routing",
+  "main": "index.js",
+  "scripts": {
+    "test": "cd test; node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "send": "^0.14.1",
+    "tape": "^4.6.3"
+  },
+  "dependencies": {
+    "path-to-regexp": "^1.7.0",
+    "stream-body": "^1.0.2",
+    "stream-response": "^1.0.0"
+  }
+}
