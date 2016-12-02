@@ -53,7 +53,7 @@ Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
 const http = require('http')
 const Router = require('literate-router')
 const send = require('send')
-const routes = require('./routes.md')
+const fs = require('fs')
 
 function nonmatch (req, res) {
   send(req, req.url).pipe(res)
@@ -63,6 +63,7 @@ function match (req, res, context, next) {
   next()
 }
 
+const routes = fs.readFileSync('./routes.md', 'utf8')
 const router = Router(routes, match, nonmatch)
 
 http.createServer(router).listen(8080)
