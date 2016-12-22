@@ -21,6 +21,7 @@ test('setup', assert => {
   function nonmatch (req, res) {
     const root = path.join(__dirname, 'static')
     const s = send(req, req.url, { root })
+
     s.on('error', err => {
       if (err.code === 'ENOENT') {
         res.statusCode = 404
@@ -41,7 +42,11 @@ test('setup', assert => {
     next()
   }
 
-  const router = Router(routes, match, nonmatch)
+  function resolver (p) {
+    return path.join(__dirname, p)
+  }
+
+  const router = Router(routes, match, nonmatch, resolver)
   http.createServer(router).listen(port, () => assert.end())
 })
 

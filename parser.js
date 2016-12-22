@@ -9,7 +9,7 @@ function die (msg, ...args) {
   process.exit(1)
 }
 
-module.exports = function parse (s) {
+module.exports = function parse (s, resolver) {
   return s
     .split('\n')
     .map((line, index) => {
@@ -29,7 +29,10 @@ module.exports = function parse (s) {
       route.replace(/:(\w+)/g, (_, k) => routeKeys.push(k))
 
       let module = null
-      let location = path.join(process.cwd(), pathToModule)
+
+      let location = resolver
+        ? resolver(pathToModule)
+        : path.join(process.cwd(), pathToModule)
 
       try {
         module = require(location)

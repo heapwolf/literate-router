@@ -2,8 +2,8 @@ const parseUrl = require('url').parse
 const path = require('path')
 const parse = require('./parser')
 
-module.exports = function Router (s, match, nonmatch) {
-  const table = parse(s)
+module.exports = function Router (s, match, nonmatch, resolver) {
+  const table = parse(s, resolver)
 
   return function Listener (req, res) {
     const pathname = parseUrl(req.url).pathname
