@@ -37,7 +37,10 @@ module.exports = function parse (s, resolver) {
       try {
         module = require(location)
       } catch (err) {
-        die('Module not found (%s)', location)
+        if (err.message.indexOf('Cannot find module') === 0) {
+          die('Module not found (%s)', location)
+        }
+        throw err
       }
 
       if (!module.test && !module.handler && typeof module !== 'function') {
@@ -57,5 +60,4 @@ module.exports = function parse (s, resolver) {
     })
     .filter(r => !!r)
 }
-
 
