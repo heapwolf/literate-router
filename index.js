@@ -23,7 +23,8 @@ module.exports = function Router (s, match, nonmatch, resolver) {
         const context = {
           method: r.method,
           route: r.route,
-          params: {}
+          params: {},
+          args: r.args
         }
 
         r.routeKeys.map((key, i) => {
