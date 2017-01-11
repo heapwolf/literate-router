@@ -28,20 +28,11 @@ module.exports = function parse (s, resolver) {
       const routeKeys = []
       route.replace(/:(\w+)/g, (_, k) => routeKeys.push(k))
 
-      let module = null
-
       let location = resolver
         ? resolver(pathToModule)
         : path.join(process.cwd(), pathToModule)
 
-      try {
-        module = require(location)
-      } catch (err) {
-        if (err.message.indexOf('Cannot find module') === 0) {
-          die('Module not found (%s)', location)
-        }
-        throw err
-      }
+      let module = require(location)
 
       if (!module.test && !module.handler && typeof module !== 'function') {
         die('Expected module to export at least one method (line #%d)', index)
