@@ -2,7 +2,7 @@ const path = require('path')
 const fmt = require('util').format
 const pathToRegexp = require('path-to-regexp')
 
-const lineRE = /^[ \t]{2,}(\S+) (\S+) (\S+) (?:\((.*?)\))/
+const lineRE = /^[ \t]{2,}(\S+)\s+(\S+)\s+(\S+)\s*(?:\((.*?)\))?/
 
 function die (msg, ...args) {
   console.error(fmt(msg, ...args))

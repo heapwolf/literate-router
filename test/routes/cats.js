@@ -5,7 +5,7 @@ exports.test = (req, res, context, next) => {
 
 exports.handler = function (req, res, context, next) {
   res.statusCode = 200
-  res.end()
+  res.end('OK')
   next()
 }
 

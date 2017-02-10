@@ -9,7 +9,8 @@ canonical reference can also be used to test routes reliably.
 
 # SYNTAX
 Lines that are indented using two or more spaces or one or more tabs) are
-parsed. All other lines are ignored (considered to be documentation).
+parsed. All other lines are ignored (considered to be documentation). Arguments
+(arbitrary string values separated by commas) are optional.
 
 ```
 Lorem Ipsum is simply dummy text of the printing and typesetting industry.

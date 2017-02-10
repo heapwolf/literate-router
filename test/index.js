@@ -52,7 +52,17 @@ test('setup', assert => {
 
 test('[passing] not found', assert => {
   request.get('/foobar', res => {
-    assert.equal(res.statusCode, 404, 'responds not found')
+    res.on('data', d => console.log(d))
+    res.on('end', () => {
+      assert.equal(res.statusCode, 404, 'responds not found')
+      assert.end()
+    })
+  }).end()
+})
+
+test('[passing] root found', assert => {
+  request.get('/', res => {
+    assert.equal(res.statusCode, 200)
     assert.end()
   }).end()
 })
