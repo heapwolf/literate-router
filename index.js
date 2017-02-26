@@ -1,5 +1,4 @@
 const parseUrl = require('url').parse
-const path = require('path')
 const parse = require('./parser')
 
 module.exports = function Router (s, match, nonmatch, resolver) {

@@ -10,9 +10,13 @@ function die (msg, ...args) {
 }
 
 module.exports = function parse (s, resolver) {
+  let gates = false
   return s
     .split('\n')
     .map((line, index) => {
+      if (line.includes('```')) gates = !gates
+      if (gates) return
+
       const match = line.match(lineRE)
       if (!match) return null
 
