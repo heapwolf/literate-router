@@ -1,11 +1,13 @@
 const parseUrl = require('url').parse
 const parse = require('./parser')
+const querystring = require('querystring')
 
 module.exports = function Router (s, match, nonmatch, resolver) {
   const table = parse(s, resolver)
 
   return function Listener (req, res) {
-    const pathname = parseUrl(req.url).pathname
+    const parsedUrl = parseUrl(req.url)
+    const pathname = parsedUrl.pathname
     const routed = false
 
     const next = i => {
@@ -23,7 +25,8 @@ module.exports = function Router (s, match, nonmatch, resolver) {
           method: r.method,
           route: r.route,
           params: {},
-          args: r.args
+          query: querystring.parse(parsedUrl.query),
+          args: r.args || {}
         }
 
         r.routeKeys.map((key, i) => {
@@ -56,4 +59,3 @@ module.exports = function Router (s, match, nonmatch, resolver) {
     next(0)
   }
 }
-
