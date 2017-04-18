@@ -26,7 +26,7 @@ module.exports = function Router (s, match, nonmatch, resolver) {
           route: r.route,
           params: {},
           query: querystring.parse(parsedUrl.query),
-          args: r.args || {}
+          args: r.args
         }
 
         r.routeKeys.map((key, i) => {
