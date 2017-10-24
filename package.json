@@ -1,6 +1,6 @@
 {
   "name": "literate-router",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Markdown powered routing",
   "main": "index.js",
   "scripts": {

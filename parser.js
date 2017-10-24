@@ -20,7 +20,7 @@ module.exports = function parse (s, resolver) {
       const match = line.match(lineRE)
       if (!match) return null
 
-      const method = match[1]
+      let method = match[1]
       const route = match[2]
       const pathToModule = match[3]
       const args = match[4]
@@ -42,6 +42,8 @@ module.exports = function parse (s, resolver) {
         die('Expected module to export at least one method (line #%d)', index)
       }
 
+      if (args && args.includes('cors')) method += '|OPTIONS'
+
       return {
         method,
         methodExp: new RegExp(method),
@@ -55,4 +57,3 @@ module.exports = function parse (s, resolver) {
     })
     .filter(r => !!r)
 }
-
